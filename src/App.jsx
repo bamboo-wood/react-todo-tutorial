@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const App = () => {
+  const [incompleteTodos, setInCompleteTodos] = useState(["aaaa", "bbbb"]);
+  const [completeTodos, setCompleteTodos] = useState(["cccc"]);
+
   return (
     <React.Fragment>
       <div className="input-area">
@@ -10,25 +13,28 @@ const App = () => {
       <div className="incomplete-area">
         <p className="title">incomplete todos</p>
         <ul>
-          <div className="list-row">
-            <li>test todo</li>
-            <button>completed</button>
-            <button>delete</button>
-          </div>
-          <div className="list-row">
-            <li>test todo</li>
-            <button>completed</button>
-            <button>delete</button>
-          </div>
+          {incompleteTodos.map((todo) => {
+            return (
+              <div key={todo} className="list-row">
+                <li>{todo}</li>
+                <button>completed</button>
+                <button>delete</button>
+              </div>
+            );
+          })}
         </ul>
       </div>
       <div className="complete-area">
         <p className="title">completed todos</p>
         <ul>
-          <div className="list-row">
-            <li>test todo</li>
-            <button>back</button>
-          </div>
+          {completeTodos.map((todo) => {
+            return (
+              <div key={todo} className="list-row">
+                <li>{todo}</li>
+                <button>back</button>
+              </div>
+            );
+          })}
         </ul>
       </div>
     </React.Fragment>
