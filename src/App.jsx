@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 const App = () => {
   const [todoText, setTodoText] = useState("");
-  const [incompleteTodos, setInCompleteTodos] = useState(["aaaa", "bbbb"]);
-  const [completeTodos, setCompleteTodos] = useState(["cccc"]);
+  const [incompleteTodos, setInCompleteTodos] = useState([]);
+  const [completeTodos, setCompleteTodos] = useState([]);
 
   const onChangeTodoText = (event) => setTodoText(event.target.value);
 
@@ -29,6 +29,16 @@ const App = () => {
     const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
     setInCompleteTodos(newInComepleteTodos);
     setCompleteTodos(newCompleteTodos);
+  };
+
+  // function to click back button
+  const onClickBack = (index) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+
+    const newInComepleteTodos = [...incompleteTodos, completeTodos[index]];
+    setCompleteTodos(newCompleteTodos);
+    setInCompleteTodos(newInComepleteTodos);
   };
 
   return (
@@ -60,11 +70,11 @@ const App = () => {
       <div className="complete-area">
         <p className="title">completed todos</p>
         <ul>
-          {completeTodos.map((todo) => {
+          {completeTodos.map((todo, index) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>back</button>
+                <button onClick={() => onClickBack(index)}>back</button>
               </div>
             );
           })}
