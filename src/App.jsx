@@ -22,6 +22,15 @@ const App = () => {
     setInCompleteTodos(newTodos);
   };
 
+  // function to click complete button
+  const onClickComplete = (index) => {
+    const newInComepleteTodos = [...incompleteTodos];
+    newInComepleteTodos.splice(index, 1);
+    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+    setInCompleteTodos(newInComepleteTodos);
+    setCompleteTodos(newCompleteTodos);
+  };
+
   return (
     <React.Fragment>
       <div className="input-area">
@@ -39,7 +48,9 @@ const App = () => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>completed</button>
+                <button onClick={() => onClickComplete(index)}>
+                  completed
+                </button>
                 <button onClick={() => onClickDelete(index)}>delete</button>
               </div>
             );
