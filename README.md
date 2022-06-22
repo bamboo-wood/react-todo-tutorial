@@ -1,2 +1,2 @@
 # react-todo-tutorial
-Created with CodeSandbox
+todo app built in react
